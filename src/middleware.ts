@@ -10,8 +10,9 @@ export async function middleware(request: NextRequest) {
     data: { session },
   } = await supabase.auth.getSession()
 
-  // Redirect to login if no session and trying to access protected route
-  if (!session && !request.nextUrl.pathname.startsWith('/auth')) {
+  const publicPaths = ['/login', '/signup', '/auth']
+
+  if (!session && !publicPaths.some(path => request.nextUrl.pathname.startsWith(path))) {
     return NextResponse.redirect(new URL('/login', request.url))
   }
 
@@ -20,12 +21,6 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     */
     '/((?!_next/static|_next/image|favicon.ico).*)',
   ],
 }

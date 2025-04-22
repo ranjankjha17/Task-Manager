@@ -24,7 +24,10 @@ export default function LoginForm() {
       })
 
       if (error) throw error
-      router.refresh()
+      // router.push('/dashboard/tasks')  // or any protected route
+      window.location.href = '/dashboard/tasks' // Full page reload to clear state
+
+
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Login failed')
     } finally {
