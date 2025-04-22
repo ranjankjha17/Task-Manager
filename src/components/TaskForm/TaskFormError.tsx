@@ -1,3 +1,5 @@
+'use client'
+
 export default function TaskFormError({ error }: { error: string | null }) {
     if (!error) return null
     

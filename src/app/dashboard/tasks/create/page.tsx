@@ -217,6 +217,7 @@
 
 'use client'
 
+import TaskForm from '@/components/TaskForm'
 import TaskFormActions from '@/components/TaskForm/TaskFormActions'
 import TaskFormError from '@/components/TaskForm/TaskFormError'
 import TaskFormFields from '@/components/TaskForm/TaskFormFields'
@@ -225,7 +226,7 @@ import { createTask, updateTask } from '@/lib/db/tasks'
 import { Task, TaskStatus } from '@/lib/db/types'
 import { useState } from 'react'
 
-export default function TaskForm({
+export default function TaskForm2({
   task,
   onSubmitSuccess,
 }: {
@@ -268,16 +269,20 @@ export default function TaskForm({
   }
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white rounded-xl shadow-md">
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <TaskFormHeader isEdit={!!task} />
-        <TaskFormError error={error} />
-        <TaskFormFields 
-          formData={formData} 
-          onFieldChange={(name, value) => setFormData(prev => ({ ...prev, [name]: value }))} 
-        />
-        <TaskFormActions isSubmitting={isSubmitting} isEdit={!!task} />
-      </form>
-    </div>
+    // <div className="max-w-2xl mx-auto p-6 bg-white rounded-xl shadow-md">
+    //   <form onSubmit={handleSubmit} className="space-y-6">
+    //     <TaskFormHeader isEdit={!!task} />
+    //     <TaskFormError error={error} />
+    //     <TaskFormFields 
+    //       formData={formData} 
+    //       onFieldChange={(name, value) => setFormData(prev => ({ ...prev, [name]: value }))} 
+    //     />
+    //     <TaskFormActions isSubmitting={isSubmitting} isEdit={!!task} />
+    //   </form>
+    // </div>
+
+    <TaskForm/>
   )
 }
+
+

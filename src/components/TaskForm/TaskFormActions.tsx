@@ -1,3 +1,6 @@
+
+'use client'
+
 import { FiSave } from 'react-icons/fi'
 
 export default function TaskFormActions({

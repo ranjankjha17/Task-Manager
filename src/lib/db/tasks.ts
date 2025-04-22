@@ -15,6 +15,7 @@ export async function createTask(task: Task) {
     return await supabase.from('tasks').update(updates).eq('id', id);
   }
   
+  
   export async function deleteTask(id: number) {
     return await supabase.from('tasks').delete().eq('id', id);
   }

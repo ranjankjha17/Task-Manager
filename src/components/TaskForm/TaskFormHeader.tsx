@@ -1,3 +1,5 @@
+'use client'
+
 import { FiEdit2, FiPlusCircle } from 'react-icons/fi'
 
 export default function TaskFormHeader({ isEdit }: { isEdit: boolean }) {

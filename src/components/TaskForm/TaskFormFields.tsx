@@ -1,3 +1,6 @@
+
+'use client'
+
 import { FiCalendar } from 'react-icons/fi'
 import { Task, TaskStatus } from '@/lib/db/types'
 

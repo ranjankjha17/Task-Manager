@@ -28,7 +28,7 @@ export default function TaskList({ tasks }: { tasks: Task[] }) {
   const handleFormSuccess = () => {
     setIsFormOpen(false)
     setEditingTask(null)
-    // Add task refresh logic here
+    router.refresh() // Re-fetches data from server
   }
 
   return (
@@ -56,7 +56,7 @@ export default function TaskList({ tasks }: { tasks: Task[] }) {
         </div>
       )}
 
-      <div className="bg-white shadow overflow-hidden sm:rounded-lg">
+      <div className="overflow-hidden sm:rounded-lg max-w-2xl mx-auto p-6 bg-white rounded-xl shadow-md">
         <ul className="divide-y divide-gray-200">
           {tasks.length === 0 ? (
             <li className="px-6 py-4 text-center text-gray-500">
