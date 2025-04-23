@@ -1,4 +1,5 @@
 // app/tasks/page.tsx
+import ProfileChecker from '@/components/Auth/ProfileChecker'
 import TaskList from '@/components/TaskList'
 // import { supabase } from '@/utils/supabase/client'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
@@ -13,16 +14,21 @@ export default async function TasksPage() {
     redirect('/login')
   }
 
-  const { data: tasks,error } = await supabase
+  const { data: tasks, error } = await supabase
     .from('tasks')
     .select('*')
     .eq('user_id', session.user.id)  // Only fetch tasks for current user
     .order('created_at', { ascending: false })
 
-    if (error) {
-      console.error(error);
-      return <div>Error fetching Task List</div>;
-    }
-  
-  return <TaskList tasks={tasks || []} />
+  if (error) {
+    console.error(error);
+    return <div>Error fetching Task List</div>;
+  }
+
+  return (
+    <>
+      <ProfileChecker />
+      <TaskList tasks={tasks || []} />
+    </>
+  )
 }

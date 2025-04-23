@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useRouter } from 'next/navigation'
+import { ensureProfileExists } from '@/lib/db/profile'
 
 export default function LoginForm() {
   const [email, setEmail] = useState('')
@@ -24,6 +25,8 @@ export default function LoginForm() {
       })
 
       if (error) throw error
+      // await ensureProfileExists()
+
       // router.push('/dashboard/tasks')  // or any protected route
       window.location.href = '/dashboard/tasks' // Full page reload to clear state
 
