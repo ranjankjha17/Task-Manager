@@ -1,23 +1,45 @@
 import { supabase } from "@/utils/supabase/client";
 import { Task } from "./types";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 
-export async function createTask(task: Task) {
-    const { data, error } = await supabase.from('tasks').insert(task);
-    return { data, error };
-  }
+
+export const createTask = async (task: Omit<Task, 'id'>) => {
+    const supabase = createClientComponentClient()
+  // Get the current session
+  const { data: { session } } = await supabase.auth.getSession()
   
-  export async function getTasks(userId: string) {
-    return await supabase.from('tasks').select('*').eq('assigned_to', userId);
+  if (!session) {
+    throw new Error('User not authenticated')
   }
-  
-  export async function updateTask(id: number, updates: Partial<Task>) {
-    return await supabase.from('tasks').update(updates).eq('id', id);
+
+  const { data, error } = await supabase
+    .from('tasks')
+    .insert({
+      ...task,
+      user_id: session.user.id  // Make sure to include user_id
+    })
+    .select()
+    .single()
+
+  if (error) {
+    console.error('Supabase error details:', error)
+    throw new Error(error.message)
   }
-  
-  export async function deleteTask(id: number) {
-    return await supabase.from('tasks').delete().eq('id', id);
-  }
+
+  return {data,error}
+}
+export async function getTasks(userId: string) {
+  return await supabase.from('tasks').select('*').eq('assigned_to', userId);
+}
+
+export async function updateTask(id: number, updates: Partial<Task>) {
+  return await supabase.from('tasks').update(updates).eq('id', id);
+}
+
+export async function deleteTask(id: number) {
+  return await supabase.from('tasks').delete().eq('id', id);
+}
 
 
 

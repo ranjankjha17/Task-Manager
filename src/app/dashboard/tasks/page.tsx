@@ -1,13 +1,23 @@
 // app/tasks/page.tsx
 import TaskList from '@/components/TaskList'
-import { supabase } from '@/utils/supabase/client'
+// import { supabase } from '@/utils/supabase/client'
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
+import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
 
 export default async function TasksPage() {
-  
+  const supabase = createServerComponentClient({ cookies })
+
+  const { data: { session } } = await supabase.auth.getSession()
+  if (!session) {
+    redirect('/login')
+  }
+
   const { data: tasks,error } = await supabase
     .from('tasks')
     .select('*')
-    .order('id', { ascending: false })
+    .eq('user_id', session.user.id)  // Only fetch tasks for current user
+    .order('created_at', { ascending: false })
 
     if (error) {
       console.error(error);

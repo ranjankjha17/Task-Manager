@@ -1,4 +1,3 @@
-// components/TaskList/index.tsx
 'use client'
 
 import { Task } from '@/lib/db/types'
