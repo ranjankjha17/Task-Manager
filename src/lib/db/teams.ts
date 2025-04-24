@@ -23,6 +23,7 @@ export interface TeamMember {
  * Creates a new team
  */
 export const createTeam = async (teamData: Omit<Team, 'id' | 'created_at' | 'updated_at'>): Promise<Team> => {
+  
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) throw new Error('User not authenticated')
 
