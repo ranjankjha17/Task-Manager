@@ -77,13 +77,13 @@ export default function ProfileChecker() {
 
       // 3. If no profile exists, create a default one
       if (error || !profile) {
-        // await createProfile({
-        //   id: user.id,
-        //   username: user.email?.split('@')[0] || `user_${Math.random().toString(36).substring(2, 8)}`,
-        //   full_name: '',
-        //   avatar_url: null
-        // })
-        router.push('/profile')
+        await createProfile({
+          id: user.id,
+          username: user.email?.split('@')[0] || `user_${Math.random().toString(36).substring(2, 8)}`,
+          full_name: '',
+          avatar_url: null
+        })
+        // router.push('/profile')
       }
 
       // 4. Redirect logic

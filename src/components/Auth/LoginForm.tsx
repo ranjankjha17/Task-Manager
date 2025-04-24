@@ -25,7 +25,7 @@ export default function LoginForm() {
       })
 
       if (error) throw error
-      // await ensureProfileExists()
+      await ensureProfileExists()
 
       // router.push('/dashboard/tasks')  // or any protected route
       window.location.href = '/dashboard/tasks' // Full page reload to clear state

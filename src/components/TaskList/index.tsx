@@ -93,7 +93,7 @@ export default function TaskList({ tasks }: { tasks: Task[] }) {
                       <div className="mt-1 flex items-center text-xs text-gray-500">
                         <FiClock className="flex-shrink-0 mr-1" />
                         <span>
-                          {task.due_date ? new Date(task.due_date).toLocaleDateString() : 'No due date'}
+                          {task.due_date ? new Date(task.due_date).toISOString().split('T')[0] : 'No due date'}
                         </span>
                         <span className="mx-1">•</span>
                         <span className="capitalize">{task.status}</span>

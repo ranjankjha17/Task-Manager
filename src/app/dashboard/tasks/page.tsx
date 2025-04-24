@@ -1,7 +1,5 @@
 // app/tasks/page.tsx
-import ProfileChecker from '@/components/Auth/ProfileChecker'
 import TaskList from '@/components/TaskList'
-// import { supabase } from '@/utils/supabase/client'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
@@ -27,7 +25,6 @@ export default async function TasksPage() {
 
   return (
     <>
-      <ProfileChecker />
       <TaskList tasks={tasks || []} />
     </>
   )
