@@ -142,3 +142,36 @@ export const removeTeamMember = async (memberId: string): Promise<void> => {
 
   if (error) throw error
 }
+
+
+
+/**
+ * Gets team details
+ */
+export const getTeamDetails = async (teamId: string): Promise<Team & { members_count: number }> => {
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) throw new Error('User not authenticated')
+
+  // Verify user is a member of the team
+  const { data: membership } = await supabase
+    .from('team_members')
+    .select('*')
+    .eq('team_id', teamId)
+    .eq('user_id', user.id)
+    .maybeSingle()
+
+  if (!membership) throw new Error('Not a team member')
+
+  const { data: team, error: teamError } = await supabase
+    .from('teams')
+    .select('*, members:team_members(count)')
+    .eq('id', teamId)
+    .single()
+
+  if (teamError) throw teamError
+
+  return {
+    ...team,
+    members_count: team.members[0].count
+  }
+}
