@@ -8,7 +8,7 @@ export default function CreateTeamPage() {
   return (
     <div className="p-4 max-w-2xl mx-auto">
       <div className="mb-6">
-        <Link href="/teams" className="text-gray-600 hover:text-gray-900">
+        <Link href="/dashboard/teams" className="text-gray-600 hover:text-gray-900">
           &larr; Back to Teams
         </Link>
       </div>

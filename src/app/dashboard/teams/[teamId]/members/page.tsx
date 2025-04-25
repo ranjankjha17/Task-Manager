@@ -11,7 +11,7 @@ export default function TeamMembersPage() {
   return (
     <div className="p-4 max-w-4xl mx-auto">
       <div className="mb-6">
-        <Link href={`/teams/${teamId}`} className="text-gray-600 hover:text-gray-900">
+        <Link href={`/dashboard/teams/${teamId}`} className="text-gray-600 hover:text-gray-900">
           &larr; Back to Team
         </Link>
       </div>

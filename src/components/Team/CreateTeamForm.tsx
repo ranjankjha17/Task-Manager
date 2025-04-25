@@ -94,7 +94,7 @@ export default function CreateTeamForm() {
       await createTeam(formData)
       setSuccess(true)
       setTimeout(() => {
-        router.push('/teams') // or router.push('/teams') if you want to redirect
+        router.push('dashboard/teams') // or router.push('/teams') if you want to redirect
       }, 1500)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to create team')
