@@ -7,6 +7,7 @@ import { cookies } from 'next/headers'
 import UserMenu from '@/components/UserMenu'
 import SupabaseProvider from "@/components/Auth/SupabaseProvider";
 import ProfileChecker from '@/components/Auth/ProfileChecker'
+import { ToastProvider } from "@/components/Team/ToastProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -55,6 +56,7 @@ export default async function RootLayout({
           <SupabaseProvider>
             <ProfileChecker />
             {children}
+            <ToastProvider />
           </SupabaseProvider>
         </main>
       </body>
