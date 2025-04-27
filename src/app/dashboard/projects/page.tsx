@@ -6,7 +6,6 @@ import { FiFolder, FiPlus, FiUsers, FiCheckCircle, FiClock, FiAlertTriangle, FiU
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
-// Add ProgressBar component
 function ProgressBar({ value }: { value: number }) {
   return (
     <div className="w-full bg-gray-200 rounded-full h-2">
@@ -38,35 +37,48 @@ export default function ProjectsPage() {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
+        setLoading(true)
         const { data, error } = await supabase
-          .from('projects')
-          .select(`
+        .from('projects')
+        .select(`
+          id,
+          name,
+          description,
+          status,
+          start_date,
+          end_date,
+          tasks:tasks!tasks_project_id_fkey (
             id,
-            name,
-            description,
-            status,
-            start_date,
-            end_date,
-            tasks:tasks!fk_tasks_project (
+            status
+          ),
+          team_members:project_members!project_members_project_id_fkey (
+            user:profiles (
               id,
-              status
-            ),
-            team_members:project_members (
-              user:profiles (
-                id,
-                avatar_url
-              )
+              avatar_url
             )
-          `)
-          .order('created_at', { ascending: false })
-
+          )
+        `)
+        .order('created_at', { ascending: false });
+      
         if (error) throw error
-        return data
+
+
+        // Transform the data to include counts
+        const formattedProjects = data?.map(project => ({
+          ...project,
+          tasks_count: project.tasks?.length || 0,
+          completed_tasks: project.tasks?.filter(t => t.status === 'completed').length || 0,
+          team_members: project.team_members?.map(tm => tm.user) || []
+        })) || []
+
+        setProjects(formattedProjects)
       } catch (error) {
         console.error('Error fetching projects:', error)
-        throw error
+      } finally {
+        setLoading(false)
       }
     }
+
     fetchProjects()
   }, [])
 

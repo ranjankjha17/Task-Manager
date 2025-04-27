@@ -1,0 +1,32 @@
+4. Notifications (Bonus)
+Email/In-App Alerts when:
+
+Assigned to a task
+
+Task due date approaches
+
+Team member mentions you (@username)
+
+Advanced Features (Optional)
+5. Task Comments & Mentions
+Threaded discussions on tasks
+
+@mentions to tag team members
+
+6. Analytics Dashboard
+Charts (e.g., tasks completed per week)
+
+Productivity metrics (e.g., overdue tasks)
+
+7. File Attachments
+Upload files (PDFs, images) to tasks (Supabase Storage)
+
+8. Dark Mode / Themes
+Toggle between light/dark UI
+
+9. Keyboard Shortcuts
+Quick task navigation (e.g., Ctrl + K to search)
+
+Technical Implementation Details
+Database Schema (Supabase PostgreSQL)
+sq
