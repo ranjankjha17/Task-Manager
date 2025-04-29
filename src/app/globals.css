@@ -24,3 +24,18 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Add smooth transitions for dragged items */
+[data-rbd-drag-handle-context-id] {
+  cursor: grab;
+}
+
+[data-rbd-draggable-context-id] {
+  transition: all 0.2s ease;
+}
+
+/* Style for the drag placeholder */
+[data-rbd-placeholder-context-id] {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+}

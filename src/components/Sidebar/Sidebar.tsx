@@ -10,7 +10,8 @@ import {
   FiUsers,
   FiSettings,
   FiFileText,
-  FiPieChart
+  FiPieChart,
+  FiClipboard
 } from 'react-icons/fi'
 
 const Sidebar = () => {
@@ -19,6 +20,7 @@ const Sidebar = () => {
   const navItems = [
     { name: 'Dashboard', href: '/dashboard', icon: <FiHome /> },
     { name: 'Tasks', href: '/dashboard/tasks', icon: <FiList /> },
+    { name: 'Tasks Boards', href: '/dashboard/task', icon: <FiClipboard /> },
     { name: 'Projects', href: '/dashboard/projects', icon: <FiFileText /> },
     { name: 'Calendar', href: '/dashboard/calendar', icon: <FiCalendar /> },
     { name: 'Team', href: '/dashboard/teams', icon: <FiUsers /> },
