@@ -1,4 +1,3 @@
-// app/dashboard/reports/page.tsx
 'use client'
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
@@ -26,7 +25,6 @@ export default function ReportsPage() {
                 .from(reportType === 'team' ? 'profiles' : reportType)
                 .select('*', { count: 'exact' })
 
-            // Add date filtering for time-based reports
             if (reportType !== 'team') {
                 query = query.gte('created_at', startDate.toISOString())
                     .lte('created_at', endDate.toISOString())
@@ -52,7 +50,6 @@ export default function ReportsPage() {
                 </h1>
             </div>
 
-            {/* Report Controls */}
             <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                     <div>
@@ -99,27 +96,8 @@ export default function ReportsPage() {
                 </div>
             </div>
 
-            {/* Report Display */}
             {reportData && (
                 <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                    {/* <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
-                        {reportType === 'tasks' && <FiCheckCircle />}
-                        {reportType === 'projects' && <FiFolder />}
-                        {reportType === 'team' && <FiUsers />}
-                        {reportType.charAt(0).toUpperCase() + reportType.slice(1)} Report
-                    </h2>
-
-                    <div className="mb-4">
-                        <p className="text-sm text-gray-500">
-                            Period: {startDate.toLocaleDateString()} - {endDate.toLocaleDateString()}
-                        </p>
-                        <p className="text-sm text-gray-500">
-                            Total Records: {reportData.count}
-                        </p>
-                    </div> */}
-
-
-          {/* // Replace the placeholder div with this chart section */}
                     {reportData && (
                         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
                             <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
@@ -138,7 +116,6 @@ export default function ReportsPage() {
                                 </p>
                             </div>
 
-                            {/* Dynamic Chart Display */}
                             <div className="h-96 space-y-8">
                                 {reportType === 'tasks' && (
                                     <>
@@ -168,14 +145,9 @@ export default function ReportsPage() {
                                 )}
                             </div>
 
-                            {/* Data Table remains the same */}
-                            <div className="mt-6 overflow-x-auto">
-                                {/* ... existing table code ... */}
-                            </div>
                         </div>
                     )}
 
-                    {/* Data Table (simplified) */}
                     <div className="mt-6 overflow-x-auto">
                         <table className="min-w-full divide-y divide-gray-200">
                             <thead className="bg-gray-50">

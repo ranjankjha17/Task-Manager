@@ -1,4 +1,3 @@
-// app/dashboard/projects/new/page.tsx
 'use client'
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
@@ -22,7 +21,6 @@ export default function NewProjectPage() {
     setLoading(true)
 
     try {
-      // Validate inputs
       if (!name.trim()) {
         throw new Error('Project name is required')
       }
@@ -33,7 +31,6 @@ export default function NewProjectPage() {
         throw new Error('End date must be after start date')
       }
 
-      // Create project in database
       const { data, error } = await supabase
         .from('projects')
         .insert([
@@ -51,7 +48,6 @@ export default function NewProjectPage() {
       if (error) throw error
 
       toast.success('Project created successfully!')
-      // router.push(`/dashboard/projects/${data.id}`)
       router.push(`/dashboard/projects`)
     } catch (error) {
       toast.error(error instanceof Error ? error.message : 'Failed to create project')

@@ -1,4 +1,3 @@
-// app/profile/edit/page.tsx
 'use client'
 
 import { useSupabase } from '@/components/Auth/SupabaseProvider'

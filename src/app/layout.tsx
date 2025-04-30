@@ -7,7 +7,7 @@ import { cookies } from 'next/headers'
 import UserMenu from '@/components/UserMenu'
 import SupabaseProvider from "@/components/Auth/SupabaseProvider";
 import ProfileChecker from '@/components/Auth/ProfileChecker'
-import { ToastProvider } from "@/components/Team/ToastProvider";
+import { ToastProvider } from "@/components/Toast/ToastProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

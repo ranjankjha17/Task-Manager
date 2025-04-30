@@ -1,4 +1,3 @@
-// app/tasks/page.tsx
 import TaskList from '@/components/TaskList'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
@@ -15,7 +14,7 @@ export default async function TasksPage() {
   const { data: tasks, error } = await supabase
     .from('tasks')
     .select('*')
-    .eq('user_id', session.user.id)  // Only fetch tasks for current user
+    .eq('user_id', session.user.id)
     .order('created_at', { ascending: false })
 
   if (error) {

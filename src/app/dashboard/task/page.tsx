@@ -4,7 +4,7 @@ import { createClientComponentClient, createServerComponentClient } from '@supab
 // import { cookies } from 'next/headers'
 import { KanbanBoard } from '@/components/KanbanBoard/KanbanBoard'
 import { TaskForm } from '@/components/KanbanBoard/TaskForm'
-import { Dialog } from "@headlessui/react"; // We use Headless UI for modal
+import { Dialog } from "@headlessui/react";
 import { useState } from 'react';
 
 export default async function TasksPage() {
@@ -35,14 +35,12 @@ export default async function TasksPage() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-          {/* Removed direct TaskForm from here */}
           <div className="lg:col-span-3">
             <KanbanBoard tasks={tasks || []} />
           </div>
         </div>
       </div>
 
-      {/* Modal */}
       <Dialog open={isOpen} onClose={closeModal} className="relative z-50">
         <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
 
@@ -52,7 +50,6 @@ export default async function TasksPage() {
               Create Task
             </Dialog.Title>
 
-            {/* Task Form */}
             <TaskForm onClose={closeModal} />
 
           </Dialog.Panel>

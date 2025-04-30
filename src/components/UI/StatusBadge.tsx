@@ -1,4 +1,3 @@
-// components/StatusBadge.tsx
 import { FiCheckCircle, FiClock, FiAlertTriangle } from 'react-icons/fi'
 
 export default function StatusBadge({ 

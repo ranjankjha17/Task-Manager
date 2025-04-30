@@ -1,4 +1,3 @@
-// app/teams/create/page.tsx
 'use client'
 
 import CreateTeamForm from '@/components/Team/CreateTeamForm'

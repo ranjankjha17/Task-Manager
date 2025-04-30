@@ -19,9 +19,6 @@ export interface TeamMember {
   created_at: string
 }
 
-/**
- * Creates a new team
- */
 export const createTeam = async (teamData: Omit<Team, 'id' | 'created_at' | 'updated_at'>): Promise<Team> => {
   
   const { data: { user } } = await supabase.auth.getUser()
@@ -38,7 +35,6 @@ export const createTeam = async (teamData: Omit<Team, 'id' | 'created_at' | 'upd
 
   if (error) throw error
 
-  // Add creator as team owner
   await addTeamMember({
     team_id: data.id,
     user_id: user.id,
@@ -48,14 +44,10 @@ export const createTeam = async (teamData: Omit<Team, 'id' | 'created_at' | 'upd
   return data
 }
 
-/**
- * Adds a member to a team
- */
 export const addTeamMember = async (memberData: Omit<TeamMember, 'id' | 'created_at'>): Promise<TeamMember> => {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) throw new Error('User not authenticated')
 
-  // Verify requester is team owner
   const { data: team } = await supabase
     .from('teams')
     .select('created_by')
@@ -76,9 +68,6 @@ export const addTeamMember = async (memberData: Omit<TeamMember, 'id' | 'created
   return data
 }
 
-/**
- * Gets all teams for current user
- */
 export const getUserTeams = async (): Promise<Team[]> => {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) throw new Error('User not authenticated')
@@ -92,14 +81,10 @@ export const getUserTeams = async (): Promise<Team[]> => {
   return data.map(item => item.team) as Team[]
 }
 
-/**
- * Gets all members of a team
- */
 export const getTeamMembers = async (teamId: string): Promise<TeamMember[]> => {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) throw new Error('User not authenticated')
 
-  // Verify user is a member of the team
   const { data: membership } = await supabase
     .from('team_members')
     .select('*')
@@ -118,14 +103,10 @@ export const getTeamMembers = async (teamId: string): Promise<TeamMember[]> => {
   return data
 }
 
-/**
- * Removes a member from a team
- */
 export const removeTeamMember = async (memberId: string): Promise<void> => {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) throw new Error('User not authenticated')
 
-  // Verify requester is team owner
   const { data: member } = await supabase
     .from('team_members')
     .select('team:teams(created_by)')
@@ -145,15 +126,10 @@ export const removeTeamMember = async (memberId: string): Promise<void> => {
 }
 
 
-
-/**
- * Gets team details
- */
 export const getTeamDetails = async (teamId: string): Promise<Team & { members_count: number }> => {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) throw new Error('User not authenticated')
 
-  // Verify user is a member of the team
   const { data: membership } = await supabase
     .from('team_members')
     .select('*')

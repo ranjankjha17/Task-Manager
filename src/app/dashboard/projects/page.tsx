@@ -1,4 +1,3 @@
-// app/dashboard/projects/page.tsx
 'use client'
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
@@ -61,9 +60,6 @@ export default function ProjectsPage() {
         .order('created_at', { ascending: false });
       
         if (error) throw error
-
-
-        // Transform the data to include counts
         const formattedProjects = data?.map(project => ({
           ...project,
           tasks_count: project.tasks?.length || 0,

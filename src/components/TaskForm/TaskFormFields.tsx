@@ -1,4 +1,3 @@
-
 'use client'
 
 import { FiCalendar } from 'react-icons/fi'
@@ -17,7 +16,6 @@ export default function TaskFormFields({
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {/* Title Field */}
       <div className="md:col-span-2">
         <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">
           Title <span className="text-red-500">*</span>
@@ -34,7 +32,6 @@ export default function TaskFormFields({
         />
       </div>
 
-      {/* Description Field */}
       <div className="md:col-span-2">
         <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
           Description
@@ -50,7 +47,6 @@ export default function TaskFormFields({
         />
       </div>
 
-      {/* Status Field */}
       <div>
         <label htmlFor="status" className="block text-sm font-medium text-gray-700 mb-1">
           Status <span className="text-red-500">*</span>
@@ -69,7 +65,6 @@ export default function TaskFormFields({
         </select>
       </div>
 
-      {/* Priority Field */}
       <div>
         <label htmlFor="priority" className="block text-sm font-medium text-gray-700 mb-1">
           Priority
@@ -87,7 +82,6 @@ export default function TaskFormFields({
         </select>
       </div>
 
-      {/* Due Date Field */}
       <div className="relative">
         <label htmlFor="due_date" className="block text-sm font-medium text-gray-700 mb-1">
           Due Date

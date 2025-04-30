@@ -23,7 +23,6 @@ export default function ProfileForm({ profile }: { profile: Profile }) {
     try {
       let avatarUrl = profile.avatar_url
 
-      // Upload new avatar if selected
       if (avatarFile) {
         const fileExt = avatarFile.name.split('.').pop()
         const fileName = `${Math.random()}.${fileExt}`
@@ -35,7 +34,6 @@ export default function ProfileForm({ profile }: { profile: Profile }) {
 
         if (uploadError) throw uploadError
 
-        // Get public URL
         const { data: { publicUrl } } = supabase.storage
           .from('avatars')
           .getPublicUrl(filePath)
@@ -43,7 +41,6 @@ export default function ProfileForm({ profile }: { profile: Profile }) {
         avatarUrl = publicUrl
       }
 
-      // Update profile
       await updateProfile({
         username: formData.username,
         full_name: formData.full_name,

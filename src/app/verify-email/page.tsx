@@ -14,7 +14,6 @@ export default function VerifyEmailPage() {
   useEffect(() => {
     const checkVerification = async () => {
       try {
-        // Check the current session
         const { data: { session } } = await supabase.auth.getSession()
         
         if (!session) {
@@ -23,7 +22,6 @@ export default function VerifyEmailPage() {
           return
         }
 
-        // Check if email is verified
         const { data: { user } } = await supabase.auth.getUser()
         
         if (user?.email_confirmed_at) {
@@ -42,7 +40,6 @@ export default function VerifyEmailPage() {
 
     checkVerification()
 
-    // Set up real-time listener for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_IN' && session?.user?.email_confirmed_at) {
         setIsVerified(true)

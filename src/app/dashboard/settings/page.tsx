@@ -1,4 +1,3 @@
-// app/dashboard/settings/page.tsx
 'use client'
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
@@ -67,7 +66,6 @@ export default function SettingsPage() {
     setLoading(true)
 
     try {
-      // Update profile information
       const { error: profileError } = await supabase
         .from('profiles')
         .update({
@@ -80,7 +78,6 @@ export default function SettingsPage() {
 
       if (profileError) throw profileError
 
-      // Update password if all fields are filled
       if (formData.currentPassword && formData.newPassword && formData.confirmPassword) {
         if (formData.newPassword !== formData.confirmPassword) {
           throw new Error("New passwords don't match")
@@ -120,7 +117,6 @@ export default function SettingsPage() {
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Profile Section */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
           <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
             <FiUser />
@@ -158,7 +154,6 @@ export default function SettingsPage() {
           </div>
         </div>
 
-        {/* Password Section */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
           <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
             <FiLock />
@@ -212,7 +207,6 @@ export default function SettingsPage() {
           </div>
         </div>
 
-        {/* Notifications Section */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
           <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
             <FiBell />
@@ -250,7 +244,6 @@ export default function SettingsPage() {
           </div>
         </div>
 
-        {/* Submit Button */}
         <div className="flex justify-end">
           <button
             type="submit"

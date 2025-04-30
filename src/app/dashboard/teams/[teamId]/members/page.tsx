@@ -1,4 +1,3 @@
-// app/teams/[teamId]/members/page.tsx
 'use client'
 
 import TeamMembers from '@/components/Team/TeamMembers'

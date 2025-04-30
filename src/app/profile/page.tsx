@@ -3,7 +3,6 @@ import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import ProfileForm from '@/components/Profile/ProfileForm'
 import { getProfile } from '@/lib/db/profile'
-// import { getProfile } from '@/lib/db/profiles'
 
 export default async function ProfilePage() {
   const supabase = createServerComponentClient({ cookies })

@@ -1,4 +1,3 @@
-// app/dashboard/page.tsx
 'use client'
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
@@ -20,7 +19,6 @@ export default function DashboardPage() {
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        // Fetch all stats in parallel
         const [
           tasksData,
           completedTasksData,
@@ -63,9 +61,7 @@ export default function DashboardPage() {
   return (
     <div className="space-y-6">
       <h1 className="text-2xl font-bold">Dashboard Overview</h1>
-      
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard 
           icon={<FiList className="text-blue-500" size={24} />}
           title="Total Tasks"
@@ -91,7 +87,6 @@ export default function DashboardPage() {
         />
       </div>
 
-      {/* Upcoming Deadlines */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-lg font-semibold">Upcoming Deadlines</h2>
@@ -125,13 +120,12 @@ export default function DashboardPage() {
         )}
       </div>
 
-      {/* Recent Activity (optional) */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+      {/* <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
         <h2 className="text-lg font-semibold mb-4">Recent Activity</h2>
         <div className="text-center py-8 text-gray-500">
           <p>Activity feed will appear here</p>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }
